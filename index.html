@@ -1,0 +1,61 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>HN Jobs</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: white;
+            }
+            h1, h2 {
+                color: #333;
+                text-align: center;
+            }
+            .plot-container {
+                margin-top: 20px;
+                padding: 20px;
+            }
+            .info {
+                text-align: center;
+                margin-top: 20px;
+                color: #666;
+            }
+            .attribution {
+                text-align: center;
+                margin-top: 20px;
+            }
+            .attribution a {
+                color: #666;
+                font-size: 0.8em;
+                text-decoration: none;
+            }
+            .attribution a:hover {
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+            const chartData = {'labels': ['Jul 2014', 'Aug 2014', 'Sep 2014', 'Oct 2014', 'Nov 2014', 'Dec 2014', 'Jan 2015', 'Feb 2015', 'Mar 2015', 'Jun 2015', 'Jul 2015', 'Aug 2015', 'Sep 2015', 'Oct 2015', 'Nov 2015', 'Dec 2015', 'Jan 2016', 'Feb 2016', 'Mar 2016', 'Apr 2016', 'May 2016', 'Jun 2016', 'Jul 2016', 'Aug 2016', 'Sep 2016', 'Oct 2016', 'Nov 2016', 'Dec 2016', 'Jan 2017', 'Feb 2017', 'Mar 2017', 'Apr 2017', 'May 2017', 'Jun 2017', 'Jul 2017', 'Aug 2017', 'Sep 2017', 'Oct 2017', 'Nov 2017', 'Dec 2017', 'Jan 2018', 'Feb 2018', 'Mar 2018', 'Apr 2018', 'May 2018', 'Jun 2018', 'Jul 2018', 'Aug 2018', 'Sep 2018', 'Oct 2018', 'Nov 2018', 'Dec 2018', 'Jan 2019', 'Feb 2019', 'Mar 2019', 'Apr 2019', 'May 2019', 'Jun 2019', 'Jul 2019', 'Aug 2019', 'Sep 2019', 'Oct 2019', 'Nov 2019', 'Dec 2019', 'Jan 2020', 'Feb 2020', 'Mar 2020', 'Apr 2020', 'May 2020', 'Jun 2020', 'Jul 2020', 'Aug 2020', 'Sep 2020', 'Oct 2020', 'Nov 2020', 'Dec 2020', 'Jan 2021', 'Feb 2021', 'Mar 2021', 'Apr 2021', 'May 2021', 'Jun 2021', 'Jul 2021', 'Aug 2021', 'Sep 2021', 'Oct 2021', 'Nov 2021', 'Dec 2021', 'Jan 2022', 'Feb 2022', 'Mar 2022', 'Apr 2022', 'May 2022', 'Jun 2022', 'Jul 2022', 'Aug 2022', 'Sep 2022', 'Oct 2022', 'Nov 2022', 'Dec 2022', 'Jan 2023', 'Feb 2023', 'Mar 2023', 'Apr 2023', 'May 2023', 'Jun 2023', 'Jul 2023', 'Aug 2023', 'Sep 2023', 'Oct 2023', 'Nov 2023', 'Dec 2023', 'Jan 2024', 'Feb 2024', 'Mar 2024', 'Apr 2024', 'May 2024', 'Jun 2024', 'Jul 2024', 'Aug 2024', 'Sep 2024', 'Oct 2024', 'Nov 2024', 'Dec 2024', 'Jan 2025', 'Feb 2025', 'Mar 2025', 'Apr 2025', 'May 2025', 'Jun 2025', 'Jul 2025', 'Aug 2025', 'Sep 2025', 'Oct 2025', 'Nov 2025', 'Dec 2025', 'Jan 2026', 'Feb 2026'], 'hiring': [418, 478, 279, 351, 340, 463, 272, 493, 505, 586, 836, 786, 699, 621, 703, 358, 372, 649, 667, 593, 666, 773, 686, 736, 642, 786, 838, 634, 614, 940, 787, 711, 831, 730, 756, 725, 780, 885, 904, 777, 663, 788, 866, 840, 974, 763, 735, 868, 692, 895, 861, 758, 767, 694, 747, 742, 818, 663, 760, 730, 609, 720, 630, 587, 574, 580, 647, 457, 500, 507, 539, 643, 601, 712, 693, 688, 706, 941, 905, 878, 848, 968, 881, 836, 900, 774, 945, 744, 663, 806, 790, 746, 761, 726, 527, 635, 505, 460, 529, 484, 366, 441, 411, 357, 345, 334, 307, 344, 296, 323, 364, 315, 278, 343, 301, 292, 399, 346, 384, 328, 308, 338, 323, 335, 281, 408, 360, 313, 307, 369, 337, 311, 305, 347, 395, 380, 264, 423], 'wanted': [200, 296, 210, 132, 132, 193, 91, 157, 168, 258, 139, 166, 173, 87, 90, 91, 102, 119, 190, 259, 157, 219, 192, 115, 155, 236, 230, 114, 251, 98, 106, 150, 214, 89, 92, 198, 97, 103, 118, 62, 76, 71, 76, 130, 62, 80, 104, 77, 65, 101, 131, 149, 219, 167, 205, 279, 236, 200, 423, 244, 154, 337, 230, 219, 225, 214, 331, 481, 301, 292, 246, 379, 313, 269, 241, 254, 261, 222, 209, 196, 186, 199, 150, 197, 194, 177, 223, 180, 200, 234, 235, 163, 254, 213, 222, 266, 287, 258, 298, 187, 368, 366, 385, 456, 350, 421, 348, 449, 392, 481, 373, 396, 472, 460, 432, 442, 448, 462, 494, 384, 434, 434, 374, 430, 380, 490, 472, 297, 372, 391, 371, 348, 357, 372, 434, 420, 414, 566]};
+        </script>
+        <script src="charts.js"></script>
+    </head>
+    <body>
+        <h1>HN Jobs</h1>
+
+        <div class="plot-container">
+            <canvas id="jobTrends"></canvas>
+        </div>
+        <div style="text-align: center; color: #666; font-size: 0.8em; margin-top: 20px;">
+            Last updated: Mar 2, 2026
+        </div>
+        <div class="attribution">
+            <a href="https://mathieularose.com">Created by Mathieu Larose</a>
+        </div>
+    </body>
+    </html>
+    
